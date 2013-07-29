@@ -1,7 +1,7 @@
 library(shiny)
 shinyUI(pageWithSidebar(
   
-  headerPanel("Selectable Table"),
+  headerPanel("Selectable Rows"),
   
   sidebarPanel(
     tags$head(
