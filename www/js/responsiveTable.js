@@ -39,7 +39,7 @@ $.extend(selectCellBinding, {
 	getValue: function(el){
 		var rowIndex = $(el).children().children().children('.cellsSelected').parent().index();		
 		if (rowIndex==-1)
-			return [-1, -1]
+			return -1;
 		var colIndex = $(el).children().children().children('.cellsSelected').index() + 1;
 		return [rowIndex, colIndex];
 	},
