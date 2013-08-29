@@ -1,5 +1,6 @@
 .tbl{
-	margin-bottom: 10px
+	margin: 10px;
+	float: left;
 }
 .tbl td {
 	padding-top: 1px;
@@ -34,15 +35,19 @@
 	background-color: #fafafa;
 }
 
-.tbl tr:hover {
+.selCell td:hover {
 	background-color: #f0f0f0;
 }
-
-.selectable td {
+.selRow tr:hover {
+	background-color: #f0f0f0;
+}
+.selCell,.selRow td {
 	cursor: hand; 
 	cursor: pointer;
 }
-
+.cellsSelected{
+	background-color: rgba(112,164,255,0.2) !important
+}
 .fullWidth {
 	width: 100%; 
 }
@@ -55,13 +60,10 @@
 	text-align: center;
 }
 
-td.condTrue{
+td.cellGreen{
 	background-color: rgba(0,255,0,0.05);
 }
 
-td.condFalse{
+td.cellRed{
 	background-color: rgba(255,0,0,0.05);
-}
-.rowSelected{
-	background-color: rgba(112,164,255,0.2) !important
 }

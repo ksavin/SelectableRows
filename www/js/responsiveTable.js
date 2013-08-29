@@ -1,18 +1,16 @@
-$(document).on('click', '.selectable tbody tr', function(){
+$(document).on('click', '.selRow tbody tr', function(){
 	var el = $(this);
-	$(this).siblings().removeClass("rowSelected");
-	$(this).addClass("rowSelected", this.clicked);
+	$(this).siblings().removeClass("cellsSelected");
+	$(this).addClass("cellsSelected", this.clicked);
 	el.trigger("change");
 });	
 var selectRowBinding = new Shiny.InputBinding();
 $.extend(selectRowBinding, {
 	find: function(scope) {
-		var res = $(scope).find(".selectable");
-		return res;
+		return $(scope).find(".selRow");
 	},
 	getValue: function(el){
-		var res = $(el).children().children('.rowSelected').index();
-		return res;
+		return $(el).children().children('.cellsSelected').index();
 	},
 	setValue: function(el, value) {
 	},
@@ -26,3 +24,34 @@ $.extend(selectRowBinding, {
 	}
 });
 Shiny.inputBindings.register(selectRowBinding);
+
+$(document).on('click', '.selCell tbody td', function(){
+	var el = $(this);
+	$(this).parent().parent().children().children().removeClass("cellsSelected");
+	$(this).addClass("cellsSelected", this.clicked);
+	el.trigger("change");
+});	
+var selectCellBinding = new Shiny.InputBinding();
+$.extend(selectCellBinding, {
+	find: function(scope) {
+		return $(scope).find(".selCell");;
+	},
+	getValue: function(el){
+		var rowIndex = $(el).children().children().children('.cellsSelected').parent().index();		
+		if (rowIndex==-1)
+			return [-1, -1]
+		var colIndex = $(el).children().children().children('.cellsSelected').index() + 1;
+		return [rowIndex, colIndex];
+	},
+	setValue: function(el, value) {
+	},
+	subscribe: function(el, callback) {
+		$(el).on("change.selectCellBinding", function(e) {
+			callback();
+		});
+	},
+	unsubscribe: function(el) {
+	  $(el).off(".selectCellBinding");
+	}
+});
+Shiny.inputBindings.register(selectCellBinding);
