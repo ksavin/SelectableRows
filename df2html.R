@@ -9,13 +9,22 @@
 # Use for conditional formatting. Use NA to leave default cell format. 
 # cellRed and cellGreen classes would change cell background to respective colors (defined in styles.css)
 #-------------------------
-df2html <- function(df, class = NULL, id = NULL, cellClass = NULL){
+df2html <- function(df, class = NULL, id = NULL, cellClass = NULL,caption=""){
   if (is.null(cellClass))
     cellClass = matrix(NA, nrow(df), ncol(df))
   out <- paste0("<table ", 
                 ifelse(is.null(class), "", paste0(" class = \"",class, "\"")),
                 ifelse(is.null(id), "", paste0(" id = \"", id, '\"')),
-                ">", "<tr>")
+                ">")
+  
+  #add caption
+  out <- paste0(out,'<caption align="top">',caption,'</caption>')
+  
+  # start row
+  out <- paste0(out,"<tr>")
+  
+  
+  
   for (i in 1:length(names(df)))
     out <- paste0(out, "<th scope = \"col\">", names(df)[i], "</th>")
   for (i in 1: nrow(df)){
