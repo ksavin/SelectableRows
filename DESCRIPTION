@@ -1,0 +1,14 @@
+Package: SelectableRows
+Version: 0.01
+Date: 2014-05-30
+Title: SelectableRows
+Author: Kirill Savin
+Maintainer: Jan Stanstrup <jan.stanstrup@fmach.it>
+Depends: R (>= 2.14.0)
+Suggests: 
+Imports:
+Enhances: 
+Description: Generates html table tags from data frame. Classes are generated to enable row or cell selection.
+License: GPL (>= 2)
+URL: None
+biocViews:
